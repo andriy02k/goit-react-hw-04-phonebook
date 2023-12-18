@@ -1,0 +1,32 @@
+.form{
+    margin: 20px;
+    padding: 8px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 320px;
+}
+
+.label{
+    display: block;
+}
+
+.input{
+    display: block;
+    margin-top: 4px;
+    border-color: #D3D3D3;
+}
+
+.btn{
+    width: 96px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: rgb(23, 70, 164);
+    border-color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
