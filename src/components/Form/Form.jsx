@@ -1,46 +1,35 @@
-import { Component } from 'react'
+import React, {useState} from 'react'
 import { nanoid } from 'nanoid'
-import React from 'react'
 import css from './Form.module.css'
 
-class Form extends Component {
-  state = {
-    name: '',
-    number: ''
-  }
+const Form = ({ addContact }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  handleChange = ({ target: { value, name } }) => {
-    this.setState((prev) => {
-      return { ...prev, [name]: value }
-    })
-  }
+  const handleChangeName = ({ target: { value } }) => setName(value);
+  const handleChangeNumber = ({ target: { value } }) => setNumber(value);
 
-  addContact = (e) => {
+  const adContact = (e) => {
     e.preventDefault();
 
-    const { name, number } = this.state;
     const newContact = { id: nanoid(), name, number };
-    this.props.addContact(newContact);
-    this.setState({ name: '', number: '' });
+    addContact(newContact);
+    setName('');
+    setNumber('');
   }
-
-  render() {
-    return (
-      <form className={css.form} onSubmit={this.addContact}>
-        <label className={css.label}>
-          Name
-          <input className={css.input} type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
-        </label>
-        <label className={css.label}>
-          Number
-          <input className={css.input} type="tel" name="number" value={this.state.number} onChange={this.handleChange} required />
-        </label>
-        <button className={css.btn} type="submit">Add contact</button>
-      </form>
-    )
-  }
+  return (
+    <form className={css.form} onSubmit={adContact}>
+      <label className={css.label}>
+        Name
+        <input className={css.input} type="text" name="name" value={name} onChange={handleChangeName} required />
+      </label>
+      <label className={css.label}>
+        Number
+        <input className={css.input} type="tel" name="number" value={number} onChange={handleChangeNumber} required />
+      </label>
+      <button className={css.btn} type="submit">Add contact</button>
+    </form>
+  )
 }
 
 export default Form
-
-
